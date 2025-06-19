@@ -6,7 +6,7 @@ export default async function handler(request, response) {
         'WELCOME-TO-THE-GARDEN',
         'HOCUS-POCUS-FOCUS',
         'THE-WIZARDS-APPRENTICE',
-        'THE_CHARM',
+        'THE-CHARM',
         'ENCHANTED-VAULT-KEY',
         'HERE-BE-DRAGONS',
         'THE-HAT-IS-SORTING',
