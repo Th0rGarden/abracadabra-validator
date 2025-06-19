@@ -1,17 +1,44 @@
-// Vercel Serverless Function: api/index.js
-
 export default async function handler(request, response) {
-    // --- CONFIGURATION ---
-    // This is your master switch for the beta program!
-    // To end the beta, change this to 'false' and redeploy.
+
     const BETA_PROGRAM_ACTIVE = true;
 
-    // This is your list of valid beta keys.
-    // Add or remove keys from this list as needed.
     const BETA_KEYS = new Set([
         'BETA-WELCOME-TO-THE-GARDEN',
-        'BETA-ANOTHER-TESTER-KEY',
-        'BETA-OBSIDIAN-ROCKS'
+        'BETA-HOCUS-POCUS-FOCUS',
+        'BETA-THE-WIZARDS-APPRENTICE',
+        'BETA-THE_CHARM',
+        'BETA-ENCHANTED-VAULT-KEY',
+        'BETA-HERE-BE-DRAGONS',
+        'BETA-THE-HAT-IS-SORTING',
+        'BETA-EXPECTO-PRODUCTIVUM',
+        'BETA-LINK-ALL-THE-THINGS',
+        'BETA-DIGITAL-GARDENER',
+        'BETA-MIND-LIKE-WATER',
+        'BETA-SLAY-THE-KNOWLEDGE-DRAGON',
+        'BETA-ONE-PLUGIN-TO-RULE-THEM',
+        'BETA-MY-VAULT-HAS-TOO-MANY-PLUGINS',
+        'BETA-I-SHOULD-BE-WRITING',
+        'BETA-IT-WORKS-ON-MY-MACHINE',
+        'BETA-NOT-A-BUG-ITS-A-FEATURE',
+        'BETA-POWERED-BY-COFFEE-AND-REGRET',
+        'BETA-INFINITE-TABS-INCOMING',
+        'BETA-PROCRASTINATION-STATION',
+        'BETA-I-READ-THE-DOCS-I-SWEAR',
+        'BETA-42',
+        'BETA-MISSION-CONTROL-ONLINE',
+        'BETA-WARP-DRIVE-ACTIVE',
+        'BETA-I-AM-YOUR-FATHERBOARD',
+        'BETA-UNLOCK-THE-MATRIX',
+        'BETA-THE-SPICE-MUST-FLOW',
+        'BETA-GIDEON-PRIME-ACCESS',
+        'BETA-HAL-9000-APPROVED',
+        'BETA-SCRIBE-OF-THE-ANCIENTS',
+        'BETA-EUREKA',
+        'BETA-GOLDEN-TICKET',
+        'BETA-FOUNDERS-KEY',
+        'BETA-VANGUARD-TESTER',
+        'BETA-PROJECT-ABRACADABRA',
+        'BETA-THOR-GARDEN-SUPPORTER'
     ]);
 
     // --- CORS Headers ---
@@ -28,13 +55,12 @@ export default async function handler(request, response) {
         return response.status(405).json({ valid: false, error: 'Method Not Allowed' });
     }
 
-    const { license_key } = request.body;
+    const { license_key } = request.body || {};
 
     if (!license_key) {
-        return response.status(400).json({ valid: false, error: 'License key is required.' });
+        return response.status(400).json({ valid: false, error: 'license_key not found.' });
     }
 
-    // Check if the provided key is in our list of beta keys
     const isKeyValid = BETA_KEYS.has(license_key);
 
     if (isKeyValid && BETA_PROGRAM_ACTIVE) {
